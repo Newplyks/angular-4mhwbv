@@ -1,0 +1,25 @@
+<p>Lazy подгрузка модуля дает нам возможность изолировать модуль и писать относительные routing, не вынося логику в вызывающий модуль.</p>
+<div class="container">
+  <div class="child">
+    <mat-card [routerLink]="'form-example'" class="clickable ">
+      <mat-card-content class="icon">
+        <mat-icon inline="true">create</mat-icon>
+        <p>Reactive Form Example</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="child">
+    <mat-card [routerLink]="'plotly-example'" class="clickable">
+      <mat-card-content class="icon">
+        <mat-icon inline="true" class="icon">show_chart</mat-icon>
+        <p>Plotly Example</p>
+      </mat-card-content>
+    </mat-card>
+    <mat-card [routerLink]="'table-example'" class="clickable">
+      <mat-card-content class="icon">
+        <mat-icon inline="true" class="icon">table_chart</mat-icon>
+        <p>Table Example</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

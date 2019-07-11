@@ -1,0 +1,6 @@
+<ng-container *ngIf="control.touched || control.dirty">
+  <mat-error> <span *ngIf="control.errors && control.errors['required']" class="small">This field is required</span></mat-error>
+  <mat-error> <span *ngIf="control.errors && control.errors['unique']" class="small">This field value is not unique</span></mat-error>
+  <mat-error> <span *ngIf="control.errors && control.errors['pattern']" class="small">Please provide US zip code in the format XXXXX or XXXXX-XXXX</span></mat-error>
+  <mat-error> <span *ngIf="control.errors && control.errors['maxlength']" class="small">This field must be at max 50 characters long</span></mat-error>
+</ng-container>

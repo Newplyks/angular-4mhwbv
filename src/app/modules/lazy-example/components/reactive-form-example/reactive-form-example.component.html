@@ -1,0 +1,57 @@
+<p>Кнопка Create Order будет доступна только тогда, когда все валидации прошли. Посмотрите, что выводится и как в консоль после нажатия Create Order.</p>
+<div class="buttons-row">
+  <button mat-button (click)="addItem()" class="mat-raised-button">
+    <span class="mat-button-wrapper">New Item</span>
+  </button>
+  <button mat-button (click)="onSubmit()" [disabled]="!form.valid" class="mat-raised-button mat-primary" color="primary">Create Order</button>
+</div>
+<p>С помощью flex довольно просто сделать так, чтобы кнопки были разнесены с пространством внутри - смотри .less файл</p>
+
+<div>
+  <pre *ngIf="form && form.value">{{form.value | json}}</pre>
+</div>
+<p>Во время разработки мы очень часто хотим видеть текущее состояние формы. Все её значения очень легко можно вывести таким образом</p>
+<div [formGroup]="form">
+  <div formGroupName="info">
+    <mat-form-field>
+      <input matInput placeholder="Some Number" type="number" formControlName="number">
+    </mat-form-field>
+    <app-validation-errors [control]="form.controls['info'].controls.number"></app-validation-errors>
+    <p>Пример HTML input=number, который дает возможность вводить только number. Поскольку он не связан с angular валидацией, его состояние не влияет на кнопку Create Order</p>
+    <mat-form-field>
+      <input matInput placeholder="User Name" type="text" formControlName="userName">
+    </mat-form-field>
+    <app-validation-errors [control]="form.controls['info'].controls.userName"></app-validation-errors>
+    <p>Очень часто бывает, что нам нужно убрать пустые символы вокруг текста, которые пользователь ввёл по ошибке. Обратите внимание, как данная
+    задача может быть решена с помощью rxJS</p>
+  </div>
+  <div formGroupName="address" class="address-group">
+    <mat-form-field>
+      <input matInput placeholder="Name" type="text" formControlName="name">
+    </mat-form-field>
+    <app-validation-errors [control]="form.controls['address'].controls.name"></app-validation-errors>
+    <p>Пример required валидации</p>
+      <mat-form-field>
+        <input matInput placeholder="Zip" type="text" formControlName="zip">
+      </mat-form-field>
+      <app-validation-errors [control]="form.controls['address'].controls.zip"></app-validation-errors>
+      <p>Пример required валидации + валидации использованием Regex</p>
+  </div>
+  <div>
+    <div formArrayName="items">
+      <div *ngFor="let item of items.controls; let i = index" fxLayout="column" [formGroupName]="i" >
+         <mat-form-field>
+          <input matInput placeholder="Unique Property" formControlName="uniqueProp" [min]="0" type="number" appPositiveInteger>
+        </mat-form-field>
+        <app-validation-errors [control]="form.controls['items'].controls[i].controls.uniqueProp"></app-validation-errors>
+        <p>Пример запрета на ввод любых символов, кроме неотрицательных</p>
+        <button mat-button (click)="deleteItem(i)" class="mat-raised-button mat-warn" color="warn"
+                [disabled]="i==0 && form.controls['items'].controls.length == 1">Delete Item</button>
+        <mat-divider></mat-divider>
+      </div>
+      <p>Пример валидации списка. Попробуйте добавить новый элемент с помощью кнопки New Item и ввести одинаковые числа, в разные Unique Property поля.
+        Работает благодаря библиотеке https://www.npmjs.com/package/@rxweb/reactive-form-validators </p>
+    </div>
+  </div>
+</div>
+

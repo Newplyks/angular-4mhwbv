@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="container-element">
+    <p><a href="https://material.angular.io/" target="_blank">Material</a> input example</p>
+    <mat-form-field>
+      <input matInput placeholder="Some input" type="text">
+    </mat-form-field>
+  </div>
+
+  <div class="container-element">
+    <p>Material date range picker <a href="https://www.npmjs.com/package/ngx-daterangepicker-material" target="_blank">example</a></p>
+    <mat-form-field>
+      <input type="text" matInput
+             ngxDaterangepickerMd
+             class="form-control"
+             [locale]="{applyLabel: 'ok', format: 'MM/DD/YYYY'}"
+             placeholder="Date Range"
+             [(ngModel)]="selected"
+             name="daterange"/>
+    </mat-form-field>
+  </div>
+</div>
