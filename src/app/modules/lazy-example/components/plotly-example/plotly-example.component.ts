@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-plotly-example',
-  templateUrl: './plotly-example.component.html',
-  styleUrls: ['./plotly-example.component.less']
+  templateUrl: './plotly-example.component.html'
 })
 export class PlotlyExampleComponent implements OnInit {
 
